@@ -15,7 +15,7 @@
 - [Usage](#Usage)
 
 # Description
-This is a full stack application utilizing Next.js, Typescript, Postgres and Vercel's sdk for Postgres. We will also incorporate Ui elements from Shadcn-Ui and utilize tailwind for css and well.Employees once approved in the admin battle will be allowed to complete four days of training and obtain a completion certificate. In the admin panel there will also be ui elements to help with the tracking of users completion throughout the course.
+This is a full stack application utilizing Next.js, Typescript, Postgres and Vercel's sdk for Postgres. We will also incorporate Ui elements from Shadcn-Ui and utilize tailwind for css and well. Employees once approved in the admin battle will be allowed to complete four days of training and obtain a completion certificate. In the admin panel there will also be ui elements to help with the tracking of users completion throughout the course.
 
 # Features
 ## Current Features
