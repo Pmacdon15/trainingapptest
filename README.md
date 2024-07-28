@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Training App
 
-## Getting Started
+<img alt="TypeScript" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/TypeScript/typescript2.svg"/>  <img alt="Next.js" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/NextJS/nextjs2.svg"/><img alt="Vercel" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Vercel/vercel2.svg"/><img alt="PostgresSql" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/PostgreSQL/postgresql1.svg"/><img alt="Tailwind" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/TailwindCSS/tailwindcss2.svg"/>
 
-First, run the development server:
+# Table of Contents
+- [Description](#Description)
+- [Deployments](#Deployments)
+- [Features](#Features)
+  - [Current Features](#Current-Features) 
+  - [Coming Soon](#Coming-Soon) 
+- [Necessary Subscriptions](#Necessary-Subscriptions)
+- [Cloning](#Cloning)
+- [Setup](#Setup)
+- [Start Up](#Start-Up)
+- [Usage](#Usage)
 
+# Description
+This is a full stack application utilizing Next.js, Typescript, Postgres and Vercel's sdk for Postgres. We will also incorporate Ui elements from Shadcn-Ui and utilize tailwind for css and well.Employees once approved in the admin battle will be allowed to complete four days of training and obtain a completion certificate. In the admin panel there will also be ui elements to help with the tracking of users completion throughout the course.
+
+# Features
+## Current Features
+1. 
+
+## Coming Soon
+1. Ability to view and complete training material
+2. Admin panel
+3. Ability to track users completion status
+4. Ability to add and change training material
+5. Ability to add imagery to questions
+
+# Necessary Subscriptions
+1. Serverless PostgreSQL DB with Vercel. [https://vercel.com/](https://vercel.com/)
+2. Work OS Account. [https://workos.com/](https://workos.com/)
+
+# Cloning
+1. Clone repository run this command: 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/k-patel1/trainingapp.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Setup
+After cloning run: 
+```Bash
+cd trainingapp
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Once you are inside of the project directory you will have to run a few commands from the root directory to set the project up.
+The commands are:
+1. Install dependencies:
+```Bash
+npm i
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Set up .env.local with Vercel Postgres, Work OS and Geoapify info:
+```env
+# Created by Vercel CLI
+NX_DAEMON=""
+POSTGRES_DATABASE=""
+POSTGRES_HOST=""
+POSTGRES_PASSWORD=""
+POSTGRES_PRISMA_URL=""
+POSTGRES_URL=""
+POSTGRES_URL_NON_POOLING=""
+POSTGRES_URL_NO_SSL=""
+POSTGRES_USER="default"
+TURBO_REMOTE_ONLY=""
+TURBO_RUN_SUMMARY=""
+VERCEL=""
 
-## Learn More
+# Needed for authkit-nextjs library example, must defined in WorkOS dashboard to work.
+WORKOS_REDIRECT_URI="http://localhost:3000/auth/callback"
+# This will change when you have a domain name, remember to updated this address in your Work Os dashboard
 
-To learn more about Next.js, take a look at the following resources:
+# Needed for authkit-nextjs library example. Must be at least 32 characters long
+WORKOS_COOKIE_PASSWORD=""
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+WORKOS_CLIENT_ID=""
+WORKOS_API_KEY=""
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
 
-## Deploy on Vercel
+It might be easiest to associate your fork with your Vercel Postgres database with your project and add these 5 variables to your Vercel projects .env and then use the Vercel Cli to pull the env, making hosting later much easier.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> **Note**
+> This project was meant to be used with a Vercel Postgres database, Work os Auth Kit and I use the Vercel Sdk to communicate with the database.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. If you want to run it in development run:
+```Bash
+npm run dev
+```
+
+Other words we have to build the project, which is easily done by running:
+```Bash
+npm run build
+```
+
+# Start up
+Project can be easily started from the root by running:
+```Bash
+npm run start
+```
+
+# Usage
+Then you can go to:
+```Bash
+http://localhost:3000
+```
+
+
+
