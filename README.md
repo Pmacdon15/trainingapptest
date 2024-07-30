@@ -1,6 +1,6 @@
 # Training App
 
-<img alt="TypeScript" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/TypeScript/typescript2.svg"/>  <img alt="Next.js" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/NextJS/nextjs2.svg"/><img alt="Vercel" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Vercel/vercel2.svg"/><img alt="PostgresSql" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/PostgreSQL/postgresql1.svg"/><img alt="Tailwind" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/TailwindCSS/tailwindcss2.svg"/>
+<img alt="TypeScript" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/TypeScript/typescript2.svg"/>  <img alt="Next.js" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/NextJS/nextjs2.svg"/> <img alt="Vercel" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Vercel/vercel2.svg"/> <img alt="PostgresSql" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/PostgreSQL/postgresql1.svg"/> <img alt="Tailwind" src="https://ziadoua.github.io/m3-Markdown-Badges/badges/TailwindCSS/tailwindcss2.svg"/>
 
 # Table of Contents
 - [Description](#Description)
@@ -15,7 +15,7 @@
 - [Usage](#Usage)
 
 # Description
-This is a full stack application utilizing Next.js, Typescript, Postgres and Vercel's sdk for Postgres. We will also incorporate Ui elements from Shadcn-Ui and utilize tailwind for css and well. Employees once approved in the admin battle will be allowed to complete four days of training and obtain a completion certificate. In the admin panel there will also be ui elements to help with the tracking of users completion throughout the course.
+This is a full stack application utilizing Next.js, Typescript, Postgres and Vercel's sdk for Postgres. We will also incorporate Ui elements from Shadcn-Ui and utilize tailwind for css and well. Employees once approved in the admin panel will be allowed to complete four days of training and obtain a completion certificate. In the admin panel there will also be ui elements to help with the tracking of users completion throughout the course.
 
 # Features
 ## Current Features
