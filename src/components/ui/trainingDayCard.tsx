@@ -11,11 +11,13 @@ import { Progress } from "@/components/ui/progress"
 
 export default function TrainingDayCard() {
     return (
-        <Card className="w-[150px] h-[200px]">
+        <Card className="w-[150px] h-[200px] flex flex-col justify-between">
             <CardHeader>
                 <CardTitle>Class Name</CardTitle>
-                <CardDescription>Card Description</CardDescription>
             </CardHeader>
+            <CardContent>
+                <div className="flex-grow"></div>
+            </CardContent>
             <CardFooter>
                 <Progress value={66} />
             </CardFooter>
