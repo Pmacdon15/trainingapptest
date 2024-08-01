@@ -1,15 +1,21 @@
-import {TrainingPageCard} from "@/components/ui/trainingPageCard"
+// import {TrainingPageCard} from "@/components/ui/trainingPageCard"
+import TrainingDayCardSection from "@/components/ui/trainingDayCardSection";
 export default function Page() {
     return (
-        <main className="flex min-h-screen flex-col items-center bg-sky-400 gap-5">
-            <h1 className="bg-sky-200 w-full text-5xl text-center">Training</h1>
+        <div className="flex min-h-screen text-[#c8d8f8] flex-col items-center bg-[#536b94] gap-5">
+            <h1 className="w-full text-5xl underline underline-offset-3 text-center">
+                Orientation
+            </h1>
             <div className="flex flex-col w-4/6">
-                <p className="text-xl  items-center text-center">Welcome to the team!! This is a training app to help orient new employees with Company X's policies and protocols.
-                    This training and content is meant to be completed over a series of four days however you can complete it at your own pace.
+                <p className="text-xl  items-center text-center">Welcome to the team!! This is a training app 
+                    to help orient new employees with Sky 360's policies, protocols and Menu Items.
+                    This training content is separated into days, feel free to complete at your own pace
+                    but you will not be able to move on till the next day until you complete the current day's training.
                 </p>
             </div>
-            
-            <TrainingPageCard />
-        </main>
+            <TrainingDayCardSection day={1} email="example@example.com" userProgressData={{}} />
+
+            {/* <TrainingPageCard /> */}
+        </div>
     );
 };
