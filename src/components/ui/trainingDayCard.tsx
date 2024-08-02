@@ -9,15 +9,15 @@ import {
 import { Progress } from "@/components/ui/progress"
 
 
-export default function TrainingDayCard({ className, progress, imagePath }: { className: string, progress: number, imagePath: string }) {    
+export default function TrainingDayCard({ courseName, progress, imagePath }: { courseName: string, progress: number, imagePath: string }) {    
     return (
-        <Card className="flex flex-col w-[150px] h-[200px]  justify-between"
+        <Card className="flex flex-col w-[150px] h-[200px] shadow-md"
             style={{
                 backgroundImage: `url(${imagePath})`,
                 backgroundSize: '100% 100%',
             }}>
             <CardHeader>
-                <CardTitle>{className}</CardTitle>
+                <CardTitle>{courseName}</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="flex-grow"></div>

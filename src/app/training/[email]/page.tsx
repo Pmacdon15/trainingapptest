@@ -3,16 +3,13 @@ import TrainingDayCardSection from "@/components/ui/trainingDayCardSection";
 export default function Page() {
     const classData = {
         1: {
-            completed: 50,
-            classNames: ["On Tap", "Starters", "Entrees", "Desserts"],
+            courseNames: [ "Starters", "Entrees", "Desserts"],
         },
-        2: {
-            completed: 60,
-            classNames: ["Mock Tails", "Cocktails", "Wine", "Beer"],
+        2: {            
+            courseNames: ["On Tap","Mock Tails", "Cocktails", "Wine", "Canned", "Bottled", "New Daily" ],
         },
-        3: {
-            completed: 70,
-            classNames: ["Classics", "Your Guest", "Discounts", "Specials"],
+        3: {            
+            courseNames: ["Your Guest","Classics", "Discounts", "Specials"],
         },
     } as any;
 
@@ -32,7 +29,7 @@ export default function Page() {
                     key={day}
                     day={parseInt(day)}
                     email="example@example.com"
-                    classData={data}
+                    coursesData={data}
                 />
             ))}
             {/* <TrainingDayCardSection day={1} email="example@example.com" userProgressData={{}} />
