@@ -1,6 +1,6 @@
 // import {TrainingPageCard} from "@/components/ui/trainingPageCard"
 import TrainingDayCardSection from "@/components/ui/trainingDayCardSection";
-export default function Page() {
+export default function Page({params}: { params:{ email: string }}) {
     const classData = {
         1: {
             courseNames: [ "Starters", "Entrees", "Desserts"],
@@ -12,7 +12,9 @@ export default function Page() {
             courseNames: ["Your Guest","Classics", "Discounts", "Specials"],
         },
     } as any;
-
+    //TODO: Replace with actual data using server actions, adjust code as needed    
+    const decodedEmail = decodeURIComponent(params.email);
+    // console.log(decodedEmail);
     return (
         <div className="flex min-h-screen text-[#c8d8f8] flex-col items-center bg-[#536b94] gap-5">
             <h1 className="w-full text-5xl shadow-md text-center">
@@ -28,7 +30,7 @@ export default function Page() {
                 <TrainingDayCardSection
                     key={day}
                     day={parseInt(day)}
-                    email="example@example.com"
+                    email={decodedEmail}
                     coursesData={data}
                 />
             ))}
