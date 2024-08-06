@@ -1,15 +1,18 @@
 // import {TrainingPageCard} from "@/components/ui/trainingPageCard"
 import TrainingDayCardSection from "@/components/ui/trainingDayCardSection";
-export default function Page({params}: { params:{ email: string }}) {
+export default function Page({ params }: { params: { email: string } }) {
     const classData = {
         1: {
-            courseNames: [ "Starters", "Entrees", "Desserts"],
+            courseNames: ["Tour", "WHMIS", "Food knowledge", "Beverage knowledge", "Specials", "POS", "Serving"],
         },
-        2: {            
-            courseNames: ["On Tap","Mock Tails", "Cocktails", "Wine", "Canned", "Bottled", "New Daily" ],
+        2: {
+            courseNames: ["Food knowledge", "Beverage knowledge", "POS", "Bar Spirits", "Side Dishes", "Situational Serving"],
         },
-        3: {            
-            courseNames: ["Your Guest","Classics", "Discounts", "Specials"],
+        3: {
+            courseNames: ["Food knowledge", "Beverage knowledge", "POS", "Cash Out", "Situational Serving"],
+        },
+        4: {
+            courseNames: ["Food knowledge", "Beverage knowledge", "Situational Serving"],
         },
     } as any;
     //TODO: Replace with actual data using server actions, adjust code as needed    
@@ -34,10 +37,7 @@ export default function Page({params}: { params:{ email: string }}) {
                     coursesData={data}
                 />
             ))}
-            {/* <TrainingDayCardSection day={1} email="example@example.com" userProgressData={{}} />
-            <TrainingDayCardSection day={2} email="example.com" userProgressData={{}} /> */}
 
-            {/* <TrainingPageCard /> */}
         </div>
     );
 };
