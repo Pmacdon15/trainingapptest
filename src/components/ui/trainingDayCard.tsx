@@ -1,3 +1,5 @@
+import { Badge } from "@/components/ui/badge"
+
 import {
     Card,
     CardContent,
@@ -9,18 +11,21 @@ import {
 import { Progress } from "@/components/ui/progress"
 
 
-export default function TrainingDayCard({ courseName, progress, imagePath }: { courseName: string, progress: number, imagePath: string }) {
+export default function TrainingDayCard({ courseName, progress, imagePath, isAdmin }: { courseName: string, progress: number, imagePath: string, isAdmin: boolean }) {
     return (
-        <Card className="flex flex-col w-[150px] h-[200px] shadow-md"
+        <Card className="flex flex-col w-[150px] h-[200px] shadow-md p-1"
             style={{
                 backgroundImage: `url(${imagePath})`,
                 backgroundSize: '100% 100%',
             }}>
+            {isAdmin ? <button className="ml-auto">
+                <Badge variant="outline">Remove</Badge>
+            </button> : null}
+
             <CardHeader>
                 <CardTitle>{courseName}</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="flex-grow"></div>
             </CardContent>
             <CardFooter>
                 {progress !== -1 ? <Progress value={progress} /> : null}

@@ -20,6 +20,7 @@ export default function TrainingDayCardSection({ day, email, coursesData, isAdmi
                                 courseName={courseName}
                                 progress={randomProgress}
                                 imagePath={imagePath}
+                                isAdmin={isAdmin}
                             />
                         );
 
@@ -29,6 +30,7 @@ export default function TrainingDayCardSection({ day, email, coursesData, isAdmi
                         courseName={"Add Courses"}
                         progress={-1}
                         imagePath={adminImagePath}
+                        isAdmin={false}
                     /> : null}                       
                 </div>
             </div>
