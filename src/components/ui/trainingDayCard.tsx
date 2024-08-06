@@ -9,7 +9,7 @@ import {
 import { Progress } from "@/components/ui/progress"
 
 
-export default function TrainingDayCard({ courseName, progress, imagePath }: { courseName: string, progress: number, imagePath: string }) {    
+export default function TrainingDayCard({ courseName, progress, imagePath }: { courseName: string, progress: number, imagePath: string }) {
     return (
         <Card className="flex flex-col w-[150px] h-[200px] shadow-md"
             style={{
@@ -23,7 +23,7 @@ export default function TrainingDayCard({ courseName, progress, imagePath }: { c
                 <div className="flex-grow"></div>
             </CardContent>
             <CardFooter>
-                <Progress value={progress} />
+                {progress !== -1 ? <Progress value={progress} /> : null}
             </CardFooter>
         </Card>
     );

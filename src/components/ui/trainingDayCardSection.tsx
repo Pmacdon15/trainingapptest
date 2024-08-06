@@ -1,7 +1,9 @@
 import TrainingDayCard from "./trainingDayCard";
-export default function TrainingDayCardSection({ day, email, coursesData }: { day: number, email: string, coursesData: any }) {
+export default function TrainingDayCardSection({ day, email, coursesData, isAdmin }: { day: number, email: string, coursesData: any , isAdmin: boolean}) {
     console.log(coursesData);
     const imagePath = `/classics.jpg`;
+    const adminImagePath = `/plus.webp`;
+    
     return (
         <div className="w-full md:w-4/6  p-4">
             <h1 className="text-3xl mb-4">Day {day}</h1>
@@ -20,7 +22,14 @@ export default function TrainingDayCardSection({ day, email, coursesData }: { da
                                 imagePath={imagePath}
                             />
                         );
+
                     })}
+                    {isAdmin ? <TrainingDayCard
+                        key={"addCourse"}
+                        courseName={"Add Courses"}
+                        progress={-1}
+                        imagePath={adminImagePath}
+                    /> : null}                       
                 </div>
             </div>
         </div>
