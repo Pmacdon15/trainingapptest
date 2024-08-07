@@ -1,5 +1,6 @@
 import TrainingDayCardSection from "@/components/ui/trainingDayCardSection";
-// import AdminTrainingDayCard from "@/components/ui/adminTrainingDayCard";
+import { getAllCourses } from "@/actions/actions";
+
 export default function Page() {
     // TODO: Replace with actual data using server actions, adjust code as needed
     const classData = {
@@ -18,7 +19,8 @@ export default function Page() {
     } as any;
     //TODO: Use auth kit function to get user and then server action to auth user
     const decodedEmail = "pmacdonald15@gmail.com";
-
+    const coursesData1 = getAllCourses();
+    console.log(coursesData1);
     return (
         <div className="flex min-h-screen  text-[#c8d8f8] flex-col items-center bg-[#536b94] gap-5">
             <h1 className="w-full text-5xl  shadow-md drop-shadow-lg text-center">
