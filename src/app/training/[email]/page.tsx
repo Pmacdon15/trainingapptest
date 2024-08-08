@@ -1,10 +1,11 @@
 import TrainingDayCardSection from "@/components/ui/trainingDayCardSection";
-import { getAllCourses , groupCoursesByDay} from "@/actions/actions";
+import { getAllCourses} from "@/actions/actions";
+import { groupCoursesByDay } from "@/functions/functions";
 import { Course } from "@/types/types";
 
 export default async function Page({ params }: { params: { email: string } }) {
     const coursesData: Course[] = await getAllCourses();;
-    const groupedCourses = await groupCoursesByDay(coursesData);
+    const groupedCourses =  groupCoursesByDay(coursesData);
     //TODO: Replace with actual data using server actions and Auth Kit    
     const decodedEmail = decodeURIComponent(params.email);
     return (

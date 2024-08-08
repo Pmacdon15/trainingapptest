@@ -1,9 +1,10 @@
 import TrainingDayCardSection from "@/components/ui/trainingDayCardSection";
-import { getAllCourses , groupCoursesByDay} from "@/actions/actions";
+import { getAllCourses } from "@/actions/actions";
+import { groupCoursesByDay } from "@/functions/functions";
 import { Course } from "@/types/types";
 export default async function Page() {
     const coursesData: Course[] = await getAllCourses();;
-    const groupedCourses = await groupCoursesByDay(coursesData);
+    const groupedCourses = groupCoursesByDay(coursesData);
 
     //TODO: Use auth kit function to get user and then server action to auth user
     const decodedEmail = "pmacdonald15@gmail.com";
@@ -20,6 +21,7 @@ export default async function Page() {
                     email={decodedEmail}
                     coursesData={courses} // Pass the array of courses directly
                     isAdmin={true}
+                    
                 />
             ))}
         </div>
