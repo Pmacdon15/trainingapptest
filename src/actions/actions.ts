@@ -58,3 +58,9 @@ export  async function goToCourse(dayOfTraining:number,courseName: string) {
 
     redirect(`/courseInfo/${courseId.rows[0].courseid}`);
 }
+
+//MARK: Go to add course
+export async function goToAddCourse(dayOfTraining: number) {
+    'use server';
+    redirect(`/addCourse/${dayOfTraining}`);
+}
