@@ -20,7 +20,7 @@ export async function getAllCourses() {
     }
     revalidatePath('/admin');
     revalidatePath('/training');
-    console.log(courses.rows as Course[]);
+    // console.log(courses.rows as Course[]);
     return courses.rows as Course[];
 }
 //MARK: Remove course
@@ -31,11 +31,30 @@ export async function removeCourse(courseName: string, dayoftraining: number) {
             DELETE FROM TACourses
             WHERE courseName = ${courseName} AND dayoftraining = ${dayoftraining}
         `;
-        console.log(courseName, dayoftraining);
+        // console.log(courseName, dayoftraining);
     } catch {
         console.log('Error removing course');
     }
     revalidatePath('/admin');
     revalidatePath('/training');
     redirect('/admin');
+}
+
+//MARK: Go to course
+// TODO: Add auth
+export  async function goToCourse(dayOfTraining:number,courseName: string) {
+    'use server';
+    let courseId;
+    try{
+        courseId = await sql`
+            SELECT courseId FROM TACourses
+            WHERE courseName = ${courseName} AND dayOfTraining = ${dayOfTraining}
+        `;  
+    }catch(error){  
+        console.log(error);
+        return;
+    }
+    console.log(courseId.rows[0].courseid);
+
+    redirect(`/courseInfo/${courseId.rows[0].courseid}`);
 }
