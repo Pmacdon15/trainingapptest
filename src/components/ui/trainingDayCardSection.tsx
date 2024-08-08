@@ -2,14 +2,13 @@ import TrainingDayCard from "./trainingDayCard";
 import { Course } from "@/types/types";
 export default function TrainingDayCardSection({ day, email, coursesData, isAdmin }: { day: number, email: string, coursesData: Course[], isAdmin: boolean }) {
     const adminImagePath = `/plus.webp`;
-    console.log(coursesData);
-
+    // console.log(coursesData);
     return (
         <div className="w-full md:w-4/6  p-4">
             <h1 className="text-3xl mb-4">Day {day}</h1>
             <div>
                 <div className="flex flex-wrap w-5/6 text-center items-start gap-4 md:gap-5 mx-auto">
-                    {coursesData.map((course) => {
+                    {coursesData.map(course => {
                         // Generate a random progress value between 0 and 100
                         // TODO: Replace this with actual progress data from server action
                         const randomProgress = Math.floor(Math.random() * 101);
@@ -24,7 +23,6 @@ export default function TrainingDayCardSection({ day, email, coursesData, isAdmi
                             />
                         );
                     })}
-
                     {isAdmin ? <TrainingDayCard
                         key={"addCourse"}
                         courseName={"Add Courses"}

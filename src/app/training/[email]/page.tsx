@@ -1,23 +1,12 @@
-// import {TrainingPageCard} from "@/components/ui/trainingPageCard"
 import TrainingDayCardSection from "@/components/ui/trainingDayCardSection";
-export default function Page({ params }: { params: { email: string } }) {
-    const classData = {
-        1: {
-            courseNames: ["Tour", "WHMIS", "Food knowledge", "Beverage knowledge", "Specials", "POS", "Serving"],
-        },
-        2: {
-            courseNames: ["Food knowledge", "Beverage knowledge", "POS", "Bar Spirits", "Side Dishes", "Situational Serving"],
-        },
-        3: {
-            courseNames: ["Food knowledge", "Beverage knowledge", "POS", "Cash Out", "Situational Serving"],
-        },
-        4: {
-            courseNames: ["Food knowledge", "Beverage knowledge", "Situational Serving"],
-        },
-    } as any;
-    //TODO: Replace with actual data using server actions, adjust code as needed    
+import { getAllCourses , groupCoursesByDay} from "@/actions/actions";
+import { Course } from "@/types/types";
+
+export default async function Page({ params }: { params: { email: string } }) {
+    const coursesData: Course[] = await getAllCourses();;
+    const groupedCourses = await groupCoursesByDay(coursesData);
+    //TODO: Replace with actual data using server actions and Auth Kit    
     const decodedEmail = decodeURIComponent(params.email);
-    // console.log(decodedEmail);
     return (
         <div className="flex min-h-screen text-[#c8d8f8] flex-col items-center bg-[#536b94] gap-5">
             <h1 className="w-full text-5xl shadow-md drop-shadow-lg text-center">
@@ -29,12 +18,13 @@ export default function Page({ params }: { params: { email: string } }) {
                     This training content is separated into days, feel free to complete at your own pace.
                 </p>
             </div>
-            {Object.entries(classData).map(([day, data]) => (
+            
+            {Object.entries(groupedCourses).map(([day, courses]) => (
                 <TrainingDayCardSection
-                    key={day}
-                    day={parseInt(day)}
+                    key={day} // Use day as the key
+                    day={parseInt(day, 10)} // Convert day to a number
                     email={decodedEmail}
-                    coursesData={data}
+                    coursesData={courses} // Pass the array of courses directly
                     isAdmin={false}
                 />
             ))}
