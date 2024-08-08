@@ -1,30 +1,41 @@
 'use server';
 import { sql } from "@vercel/postgres";
 import { Course } from "@/types/types";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
 //MARK: Get courses
 export async function getAllCourses() {
     'use server';
     //TODO: Add auth
+    let courses;
     try {
-        const courses = await sql`
+        courses = await sql`
             SELECT * FROM TACourses
         `;
-        return courses.rows as Course[];
+
     } catch (error) {
         console.log(error);
         return [];
     }
+    revalidatePath('/admin');
+    revalidatePath('/training');
+    console.log(courses.rows as Course[]);
+    return courses.rows as Course[];
 }
 //MARK: Remove course
 export async function removeCourse(courseName: string, dayoftraining: number) {
     'use server';
     try {
-        // await sql`
-        //     DELETE FROM TACourses
-        //     WHERE courseName = ${courseName} AND dayoftraining = ${dayoftraining}
-        // `; 
+        await sql`
+            DELETE FROM TACourses
+            WHERE courseName = ${courseName} AND dayoftraining = ${dayoftraining}
+        `;
         console.log(courseName, dayoftraining);
     } catch {
         console.log('Error removing course');
     }
+    revalidatePath('/admin');
+    revalidatePath('/training');
+    redirect('/admin');
 }

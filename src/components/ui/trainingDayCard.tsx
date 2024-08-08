@@ -12,7 +12,7 @@ import { Progress } from "@/components/ui/progress"
 import { removeCourse } from "@/actions/actions";
 
 
-export default async function TrainingDayCard({ courseName, progress, imagePath, dayOfTraining, isAdmin }: { courseName: string, progress: number, imagePath: string, dayOfTraining: number, isAdmin: boolean }) {
+export default function TrainingDayCard({ courseName, progress, imagePath, dayOfTraining, isAdmin }: { courseName: string, progress: number, imagePath: string, dayOfTraining: number, isAdmin: boolean }) {
     return (
         <Card className="flex flex-col w-[150px] h-[200px] shadow-md p-1"
             style={{
