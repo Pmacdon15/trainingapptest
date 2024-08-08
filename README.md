@@ -19,7 +19,8 @@ This is a full stack application utilizing Next.js, Typescript, Postgres and Ver
 
 # Features
 ## Current Features
-1. 
+1. View available courses
+2. Base layout for admin page
 
 ## Coming Soon
 1. Ability to view and complete training material
