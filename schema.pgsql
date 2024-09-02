@@ -14,74 +14,74 @@ VALUES
         'Tour',
         1,
         'A tour of the building and work areas.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'WHMIS',
         1,
         'Workplace Hazardous Materials Information System.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'Food Knowledge',
         1,
         'A basic understanding of food safety and the menu.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'Specials',
         1,
         'A review of the daily specials.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'POS',
         1,
         'Point of Sale system training.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'Situational serving',
         1,
         'How to handle difficult situations with customers.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     -- Day 2
     (
         'Food Knowledge',
         2,
         'A basic understanding of food safety and the menu.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'Beverage Knowledge',
         2,
         'A basic understanding of the beverage menu.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'POS',
         2,
         'Point of Sale system training.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'Bar Sprits',
         2,
         'A review of the bar sprits.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'Side Dishes',
         2,
         'What Dishes can come on the side, at what price.',
-        '/classics.jpg'
+        'classics.jpg'
     ),
     (
         'Situational serving',
         2,
         'How to handle difficult situations with customers.',
-        '/classics.jpg'
+        'classics.jpg'
     )
 
     --   SELECT * FROM TACourses

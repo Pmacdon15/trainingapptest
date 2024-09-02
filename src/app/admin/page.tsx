@@ -7,7 +7,7 @@ export default async function Page() {
     const groupedCourses = groupCoursesByDay(coursesData);
 
     //TODO: Use auth kit function to get user and then server action to auth user
-    const decodedEmail = "pmacdonald15@gmail.com";
+    const decodedEmail = "pmacdonald15@gmail.com";    
 
     return (
         <div className="flex min-h-screen  text-[#c8d8f8] flex-col items-center bg-[#536b94] gap-5">
@@ -20,8 +20,7 @@ export default async function Page() {
                     day={parseInt(day, 10)} // Convert day to a number
                     email={decodedEmail}
                     coursesData={courses} // Pass the array of courses directly
-                    isAdmin={true}
-                    
+                    isAdmin={true}                    
                 />
             ))}
         </div>
