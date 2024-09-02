@@ -19,8 +19,7 @@ export default function TrainingDayCard({
     imagePath,
     dayOfTraining,
     isAdmin,
-    addCourseFunction,
-    closeAddCourseFunction
+    addCourseFunction
 }:
     {
         courseName: string,
@@ -28,8 +27,7 @@ export default function TrainingDayCard({
         imagePath: string,
         dayOfTraining: number,
         isAdmin: boolean,
-        addCourseFunction: Function,
-        closeAddCourseFunction: Function
+        addCourseFunction: Function
     }) {
     const bindFormWithCourseNameAndDayOfTrainingRemoveCourse = removeCourse.bind(null, courseName, dayOfTraining);
     const bindFormWithCourseNameAndDayOfTrainingGoToCourse = goToCourse.bind(null, dayOfTraining, courseName);    
@@ -50,13 +48,14 @@ export default function TrainingDayCard({
     //         document.removeEventListener('mousedown', handleClickOutside);
     //     };
     // }, [courseName, closeAddCourseFunction]);
+    console.log(`Image path: /uploads/${imagePath}`);
 
     return (
         <Card
             // ref={cardRef}
             className="flex flex-col w-[150px] h-[200px]  shadow-md p-1"
             style={{
-                backgroundImage: `url(uploads/${imagePath})`,
+                backgroundImage: `url(/uploads/${imagePath})`,
                 backgroundSize: '100% 100%',
             }}>
             {isAdmin ?

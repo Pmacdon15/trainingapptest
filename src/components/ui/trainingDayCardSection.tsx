@@ -5,7 +5,7 @@ import { Course } from "@/types/types";
 import AddCourse from "@/components/ui/addCourse/addCourse";
 
 export default function TrainingDayCardSection({ day, email, coursesData, isAdmin }: { day: number, email: string, coursesData: Course[], isAdmin: boolean }) {
-    const adminImagePath = `/plus.webp`;
+    const adminImagePath = `plus.webp`;
 
     const [showAddCourse, setShowAddCourse] = useState(false);
 
@@ -38,7 +38,6 @@ export default function TrainingDayCardSection({ day, email, coursesData, isAdmi
                                 dayOfTraining={day}
                                 isAdmin={isAdmin}
                                 addCourseFunction={addCourseClicked}
-                                closeAddCourseFunction={addCourseClose}
                             />
                         );
                     })}
@@ -51,7 +50,6 @@ export default function TrainingDayCardSection({ day, email, coursesData, isAdmi
                         dayOfTraining={day}
                         isAdmin={false}
                         addCourseFunction={addCourseClicked}
-                        closeAddCourseFunction={addCourseClose}
                     /> : null}
                 </div>
             </div>
