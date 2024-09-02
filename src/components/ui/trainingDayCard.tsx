@@ -32,26 +32,24 @@ export default function TrainingDayCard({
         closeAddCourseFunction: Function
     }) {
     const bindFormWithCourseNameAndDayOfTrainingRemoveCourse = removeCourse.bind(null, courseName, dayOfTraining);
-    const bindFormWithCourseNameAndDayOfTrainingGoToCourse = goToCourse.bind(null, dayOfTraining, courseName);
-    // const bindFormWithCourseNameAndDayOfTrainingGoToAddCourse = goToAddCourse.bind(null, formData: FormData);
-    //TODO: remove this unneeded const
-    const correctRedirect = bindFormWithCourseNameAndDayOfTrainingGoToCourse;
+    const bindFormWithCourseNameAndDayOfTrainingGoToCourse = goToCourse.bind(null, dayOfTraining, courseName);    
     const cardRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
-                closeAddCourseFunction();
-            }
-        }
+    
+    // useEffect(() => {
+    //     function handleClickOutside(event: MouseEvent) {
+    //         if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+    //             closeAddCourseFunction();
+    //         }
+    //     }
 
-        if (courseName === "Add Courses") {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
+    //     if (courseName === "Add Courses") {
+    //         document.addEventListener('mousedown', handleClickOutside);
+    //     }
 
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [courseName, closeAddCourseFunction]);
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutside);
+    //     };
+    // }, [courseName, closeAddCourseFunction]);
 
     return (
         <Card
@@ -84,7 +82,7 @@ export default function TrainingDayCard({
                     </button>
                 </form>
             ) : (
-                <form action={correctRedirect} className="mt-auto w-full">
+                <form action={bindFormWithCourseNameAndDayOfTrainingGoToCourse} className="mt-auto w-full">
                     <button className="w-full" type="submit">
                         <CardHeader>
                             <CardTitle>{courseName}</CardTitle>

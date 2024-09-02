@@ -42,7 +42,7 @@ export default function TrainingDayCardSection({ day, email, coursesData, isAdmi
                             />
                         );
                     })}
-                    {showAddCourse ? <AddCourse /> : null}
+                    {showAddCourse ? <AddCourse dayOfTraining={day}closeAddCourseFunction={addCourseClose} /> : null}
                     {isAdmin ? <TrainingDayCard
                         key={"addCourse"}
                         courseName={"Add Courses"}
