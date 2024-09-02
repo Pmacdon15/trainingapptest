@@ -1,3 +1,4 @@
+'use client';
 import { Badge } from "@/components/ui/badge"
 import {
     Card,
@@ -9,24 +10,53 @@ import {
 } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { removeCourse, goToCourse, goToAddCourse } from "@/actions/actions";
+import { useEffect, useRef } from "react";
 
 
-
-
-export default function TrainingDayCard({ courseName, progress, imagePath, dayOfTraining, isAdmin }: { courseName: string, progress: number, imagePath: string, dayOfTraining: number, isAdmin: boolean }) {
-    const bindFormWithCourseNameAndDayOfTrainingRemoveCourse = removeCourse.bind(null, courseName, dayOfTraining);    
+export default function TrainingDayCard({
+    courseName,
+    progress,
+    imagePath,
+    dayOfTraining,
+    isAdmin,
+    addCourseFunction,
+    closeAddCourseFunction
+}:
+    {
+        courseName: string,
+        progress: number,
+        imagePath: string,
+        dayOfTraining: number,
+        isAdmin: boolean,
+        addCourseFunction: Function,
+        closeAddCourseFunction: Function
+    }) {
+    const bindFormWithCourseNameAndDayOfTrainingRemoveCourse = removeCourse.bind(null, courseName, dayOfTraining);
     const bindFormWithCourseNameAndDayOfTrainingGoToCourse = goToCourse.bind(null, dayOfTraining, courseName);
-    const bindFormWithCourseNameAndDayOfTrainingGoToAddCourse = goToAddCourse.bind(null, dayOfTraining);
-    
-    let correctRedirect;
-    if (courseName === "Add Courses") {
-        correctRedirect =  bindFormWithCourseNameAndDayOfTrainingGoToAddCourse;
-    }else{
-        correctRedirect =bindFormWithCourseNameAndDayOfTrainingGoToCourse;
-    }
+    // const bindFormWithCourseNameAndDayOfTrainingGoToAddCourse = goToAddCourse.bind(null, formData: FormData);
+    //TODO: remove this unneeded const
+    const correctRedirect = bindFormWithCourseNameAndDayOfTrainingGoToCourse;
+    const cardRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+                closeAddCourseFunction();
+            }
+        }
+
+        if (courseName === "Add Courses") {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [courseName, closeAddCourseFunction]);
 
     return (
-        <Card className="flex flex-col w-[150px] h-[200px]  shadow-md p-1"
+        <Card
+            ref={cardRef}
+            className="flex flex-col w-[150px] h-[200px]  shadow-md p-1"
             style={{
                 backgroundImage: `url(${imagePath})`,
                 backgroundSize: '100% 100%',
@@ -38,18 +68,35 @@ export default function TrainingDayCard({ courseName, progress, imagePath, dayOf
                     </button>
                 </form> : null
             }
-            <form action={correctRedirect} className="mt-auto w-full">
-                <button className="w-full" type="submit" >
-                    <CardHeader>
-                        <CardTitle>{courseName}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                    </CardContent>
-                    <CardFooter>
-                        {progress !== -1 ? <Progress value={progress} /> : null}
-                    </CardFooter>
-                </button>
-            </form>
+            {courseName === "Add Courses" ? (
+                <form>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        addCourseFunction();
+                    }}>
+                        <CardHeader>
+                            <CardTitle>{courseName}</CardTitle>
+                        </CardHeader>
+                        <CardContent></CardContent>
+                        <CardFooter>
+                            {progress !== -1 ? <Progress value={progress} /> : null}
+                        </CardFooter>
+                    </button>
+                </form>
+            ) : (
+                <form action={correctRedirect} className="mt-auto w-full">
+                    <button className="w-full" type="submit">
+                        <CardHeader>
+                            <CardTitle>{courseName}</CardTitle>
+                        </CardHeader>
+                        <CardContent></CardContent>
+                        <CardFooter>
+                            {progress !== -1 ? <Progress value={progress} /> : null}
+                        </CardFooter>
+                    </button>
+                </form>
+            )
+            }
         </Card >
     );
 }

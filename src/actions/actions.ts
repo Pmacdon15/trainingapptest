@@ -70,7 +70,7 @@ export async function goToCourse(dayOfTraining: number, courseName: string) {
 export async function goToAddCourse(dayOfTraining: number) {
     //TODO: Add auth
     'use server';
-    redirect(`/addCourse/${dayOfTraining}`);
+//    console.log('Add course');
 }
 
 //MARK: Upload photo
