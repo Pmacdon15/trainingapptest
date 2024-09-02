@@ -79,17 +79,18 @@ export async function uploadPhoto(formData: FormData) {
     'use server';
     const file = formData.get('file') as File;
     try {
-        const fileName = file.name;
+        const originalFileName = file.name;
+        const uniqueFileName = generateUniqueFileName(originalFileName);
         const fileType = file.type;
         const fileSize = file.size;
 
         if (file.size > MAX_FILE_SIZE_BYTES) {
             throw new Error('File size exceeds 3 MB');
         }
-        
-        console.table([{ fileName, fileType, fileSize }]);        
 
-        const filePath = path.join('./public/uploads', fileName);
+        console.table([{  uniqueFileName, fileType, fileSize }]);        
+
+        const filePath = path.join('./public/uploads',  uniqueFileName);
         const fileStream = fs.createWriteStream(filePath);
         const reader = file.stream() as unknown as NodeJS.ReadableStream; //Cast as unknown to remove error
 
@@ -104,4 +105,12 @@ export async function uploadPhoto(formData: FormData) {
     // revalidatePath('/admin');
     // revalidatePath('/training');
     // redirect('/admin');
+}
+
+// Function to generate a unique file name based on timestamp
+function generateUniqueFileName(originalName: string): string {
+    const timestamp = Date.now();
+    const ext = path.extname(originalName); // Get file extension
+    const baseName = path.basename(originalName, ext); // Get file base name without extension
+    return `${baseName}_${timestamp}${ext}`; // Append timestamp to base name
 }
