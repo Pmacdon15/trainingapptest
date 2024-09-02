@@ -9,8 +9,8 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { removeCourse, goToCourse, goToAddCourse } from "@/actions/actions";
-import { useEffect, useRef } from "react";
+import { removeCourse, goToCourse} from "@/actions/actions";
+// import { useEffect, useRef } from "react";
 
 
 export default function TrainingDayCard({
@@ -33,8 +33,8 @@ export default function TrainingDayCard({
     }) {
     const bindFormWithCourseNameAndDayOfTrainingRemoveCourse = removeCourse.bind(null, courseName, dayOfTraining);
     const bindFormWithCourseNameAndDayOfTrainingGoToCourse = goToCourse.bind(null, dayOfTraining, courseName);    
-    const cardRef = useRef<HTMLDivElement>(null);
-    
+    // const cardRef = useRef<HTMLDivElement>(null);
+
     // useEffect(() => {
     //     function handleClickOutside(event: MouseEvent) {
     //         if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
@@ -53,10 +53,10 @@ export default function TrainingDayCard({
 
     return (
         <Card
-            ref={cardRef}
+            // ref={cardRef}
             className="flex flex-col w-[150px] h-[200px]  shadow-md p-1"
             style={{
-                backgroundImage: `url(${imagePath})`,
+                backgroundImage: `url(uploads/${imagePath})`,
                 backgroundSize: '100% 100%',
             }}>
             {isAdmin ?

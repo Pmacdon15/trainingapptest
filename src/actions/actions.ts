@@ -66,18 +66,30 @@ export async function goToCourse(dayOfTraining: number, courseName: string) {
     redirect(`/courseInfo/${courseId.rows[0].courseid}`);
 }
 
-//MARK: Go to add course
-export async function goToAddCourse(dayOfTraining: number) {
-    //TODO: Add auth
-    'use server';
-//    console.log('Add course');
-}
-
-//MARK: Upload photo
-export async function uploadPhoto(formData: FormData) {
+//MARK: Add course
+export async function addCourse(formData: FormData) {
     //TODO: Add auth
     'use server';
     const file = formData.get('file') as File;
+    try {
+        const fileName = await uploadPhoto(file);
+        const courseName = formData.get('courseName') as string;
+        // const dayOfTraining = formData.get('dayOfTraining') as number;
+        const dayOfTraining = 1;
+        await setCourseNameAndImageName(dayOfTraining, courseName, fileName);
+    } catch (error) {
+        console.log(error);
+        return {message: 'Error adding course: '+ (error as Error).message};
+    };
+
+    revalidatePath('/admin');
+    revalidatePath('/admin');
+}
+
+//MARK: Upload photo
+async function uploadPhoto(file: File) {
+    //TODO: Add auth
+    // const file = formData.get('file') as File;
     try {
         const originalFileName = file.name;
         const uniqueFileName = generateUniqueFileName(originalFileName);
@@ -88,9 +100,9 @@ export async function uploadPhoto(formData: FormData) {
             throw new Error('File size exceeds 3 MB');
         }
 
-        console.table([{  uniqueFileName, fileType, fileSize }]);        
+        console.table([{ uniqueFileName, fileType, fileSize }]);
 
-        const filePath = path.join('./public/uploads',  uniqueFileName);
+        const filePath = path.join('./public/uploads', uniqueFileName);
         const fileStream = fs.createWriteStream(filePath);
         const reader = file.stream() as unknown as NodeJS.ReadableStream; //Cast as unknown to remove error
 
@@ -98,13 +110,10 @@ export async function uploadPhoto(formData: FormData) {
             reader,
             fileStream
         );
+        return uniqueFileName;
     } catch (error) {
-        console.log(error);
-        return { message: (error as Error).message };
+        throw new Error('Error uploading file: ' + (error as Error).message);
     }
-    // revalidatePath('/admin');
-    // revalidatePath('/training');
-    // redirect('/admin');
 }
 
 // Function to generate a unique file name based on timestamp
@@ -113,4 +122,20 @@ function generateUniqueFileName(originalName: string): string {
     const ext = path.extname(originalName); // Get file extension
     const baseName = path.basename(originalName, ext); // Get file base name without extension
     return `${baseName}_${timestamp}${ext}`; // Append timestamp to base name
+}
+
+//MARK: Set course name and image name
+export async function setCourseNameAndImageName(dayOfTraining: number, courseName: string, imagePath: string) {
+    try {
+        const result = await sql`
+        INSERT INTO TACourses (CourseName, DayOfTraining, ImagePath)
+        VALUES (${courseName}, ${dayOfTraining}, ${imagePath})
+    `;
+        if (result.rowCount === 0) {
+            throw new Error('Error setting course name and image name');
+        }
+    } catch (error) {
+        // console.log(error);
+        throw new Error('Error setting course name and image name: ' + (error as Error).message);
+    }
 }
