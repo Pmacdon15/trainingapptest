@@ -42,6 +42,8 @@ export async function removeCourse(courseName: string, dayoftraining: number) {
     } catch {
         console.log('Error removing course');
     }
+    //TODO: Remove course image
+
     revalidatePath('/admin');
     revalidatePath('/training');
     redirect('/admin');
@@ -67,7 +69,7 @@ export async function goToCourse(dayOfTraining: number, courseName: string) {
 }
 
 //MARK: Add course
-export async function addCourse(formData: FormData) {
+export async function addCourse(dayOfTraining: number, formData: FormData) {
     //TODO: Add auth
     'use server';
     const file = formData.get('file') as File;
@@ -75,15 +77,15 @@ export async function addCourse(formData: FormData) {
         const fileName = await uploadPhoto(file);
         const courseName = formData.get('courseName') as string;
         // const dayOfTraining = formData.get('dayOfTraining') as number;
-        const dayOfTraining = 1;
+        // const dayOfTraining = 1;
         await setCourseNameAndImageName(dayOfTraining, courseName, fileName);
     } catch (error) {
         console.log(error);
-        return {message: 'Error adding course: '+ (error as Error).message};
+        return { message: 'Error adding course: ' + (error as Error).message };
     };
 
     revalidatePath('/admin');
-    revalidatePath('/admin');
+    redirect('/admin');
 }
 
 //MARK: Upload photo
