@@ -1,3 +1,4 @@
+'use client';
 import TrainingDayCard from "./trainingDayCard";
 import { Course } from "@/types/types";
 export default function TrainingDayCardSection({ day, email, coursesData, isAdmin }: { day: number, email: string, coursesData: Course[], isAdmin: boolean }) {
