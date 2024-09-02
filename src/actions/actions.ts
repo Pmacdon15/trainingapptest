@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import path from 'path'
 import fs from 'fs'
 import { pipeline } from 'stream/promises';
+import { MAX_FILE_SIZE_BYTES } from "@/lib/constants";
 
 
 
@@ -81,6 +82,11 @@ export async function uploadPhoto(formData: FormData) {
         const fileName = file.name;
         const fileType = file.type;
         const fileSize = file.size;
+
+        if (file.size > MAX_FILE_SIZE_BYTES) {
+            throw new Error('File size exceeds 3 MB');
+        }
+        
         console.table([{ fileName, fileType, fileSize }]);        
 
         const filePath = path.join('./public/uploads', fileName);
@@ -91,10 +97,9 @@ export async function uploadPhoto(formData: FormData) {
             reader,
             fileStream
         );
-
-
     } catch (error) {
         console.log(error);
+        return { message: (error as Error).message };
     }
     // revalidatePath('/admin');
     // revalidatePath('/training');
