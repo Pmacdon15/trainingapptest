@@ -48,7 +48,7 @@ export default function TrainingDayCard({
     //         document.removeEventListener('mousedown', handleClickOutside);
     //     };
     // }, [courseName, closeAddCourseFunction]);
-    console.log(`Image path: /uploads/${imagePath}`);
+    // console.log(`Image path: /uploads/${imagePath}`);
 
     return (
         <Card

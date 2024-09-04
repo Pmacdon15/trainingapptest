@@ -76,8 +76,6 @@ export async function addCourse(dayOfTraining: number, formData: FormData) {
     try {
         const fileName = await uploadPhoto(file);
         const courseName = formData.get('courseName') as string;
-        // const dayOfTraining = formData.get('dayOfTraining') as number;
-        // const dayOfTraining = 1;
         await setCourseNameAndImageName(dayOfTraining, courseName, fileName);
     } catch (error) {
         console.log(error);
