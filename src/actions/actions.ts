@@ -3,10 +3,7 @@ import { sql } from "@vercel/postgres";
 import { Course } from "@/types/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import path from 'path'
-import fs from 'fs'
-import { pipeline } from 'stream/promises';
-import { MAX_FILE_SIZE_BYTES } from "@/lib/constants";
+import { put } from '@vercel/blob';
 
 //MARK: Get courses
 export async function getAllCourses() {
@@ -24,7 +21,6 @@ export async function getAllCourses() {
     }
     revalidatePath('/admin');
     revalidatePath('/training');
-    // console.log(courses.rows as Course[]);
     return courses.rows as Course[];
 }
 //MARK: Remove course
@@ -61,21 +57,25 @@ export async function goToCourse(dayOfTraining: number, courseName: string) {
         console.log(error);
         return;
     }
-    console.log(courseId.rows[0].courseid);
-
+    // console.log(courseId.rows[0].courseid);
     redirect(`/courseInfo/${courseId.rows[0].courseid}`);
 }
 
 //MARK: Add course
-export async function addCourse( dayOfTraining: number, imagePath:string, formData: FormData) {
+export async function addCourse( dayOfTraining: number, formData: FormData) {
     //TODO: Add auth
     'use server';
     const courseName = formData.get('courseName') as string;
+    const file = formData.get('file') as File;
+    const filename = file.name;    
+    const blob = await put(filename, file, {
+        access: 'public',
+      });
 
     try {
         const result = await sql`
         INSERT INTO TACourses (CourseName, DayOfTraining, ImagePath)
-        VALUES (${courseName}, ${dayOfTraining}, ${imagePath})
+        VALUES (${courseName}, ${dayOfTraining}, ${blob.url})
     `;
         if (result.rowCount === 0) {
             throw new Error('Error setting course name and image name');
