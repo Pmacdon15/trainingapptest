@@ -55,7 +55,7 @@ export default function TrainingDayCard({
             // ref={cardRef}
             className="flex flex-col w-[150px] h-[200px]  shadow-md p-1"
             style={{
-                backgroundImage: `url(/uploads/${imagePath})`,
+                backgroundImage: `url(${imagePath})`,
                 backgroundSize: '100% 100%',
             }}>
             {isAdmin ?

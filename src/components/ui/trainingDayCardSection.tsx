@@ -5,7 +5,7 @@ import { Course } from "@/types/types";
 import AddCourse from "@/components/ui/addCourse/addCourse";
 
 export default function TrainingDayCardSection({ day, email, coursesData, isAdmin }: { day: number, email: string, coursesData: Course[], isAdmin: boolean }) {
-    const adminImagePath = `plus.webp`;
+    const adminImagePath = `https://yiteg94znhby2sle.public.blob.vercel-storage.com/plus-7kcRWNKJh1y6DX7OdqEoRj0vkZTriQ.webp`;
 
     const [showAddCourse, setShowAddCourse] = useState(false);
 
