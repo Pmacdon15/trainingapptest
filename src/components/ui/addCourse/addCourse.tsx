@@ -5,14 +5,19 @@ import { Button } from "@/components/ui/button";
 
 export default function AddCourse({ dayOfTraining, closeAddCourseFunction }: { dayOfTraining: number, closeAddCourseFunction: Function }) {
     const bindFormWithDayOfTraining = addCourse.bind(null, dayOfTraining);
-
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const form = event.currentTarget as HTMLFormElement;
-        const formData = new FormData(form);
-        bindFormWithDayOfTraining(formData);
-        closeAddCourseFunction();
+        const formData = new FormData(form);        
+        try {
+            bindFormWithDayOfTraining(formData);
+            closeAddCourseFunction();
+        } catch (error) {
+            console.error("Error during file upload:", error);
+            // Handle error (show a message to the user, etc.)
+        }
     }
+
     //TODO: Add form state to disable button when clicked
 
     return (
@@ -29,4 +34,5 @@ export default function AddCourse({ dayOfTraining, closeAddCourseFunction }: { d
         </div>
     );
 };
+
 
