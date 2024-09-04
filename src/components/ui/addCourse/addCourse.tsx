@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 
 export default function AddCourse({ dayOfTraining, closeAddCourseFunction }: { dayOfTraining: number, closeAddCourseFunction: Function }) {
     const bindFormWithDayOfTraining = addCourse.bind(null, dayOfTraining);
-
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const form = event.currentTarget as HTMLFormElement;

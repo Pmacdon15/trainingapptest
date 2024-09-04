@@ -9,7 +9,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { removeCourse, goToCourse} from "@/actions/actions";
+import { removeCourse, goToCourse } from "@/actions/actions";
 // import { useEffect, useRef } from "react";
 
 
@@ -30,7 +30,7 @@ export default function TrainingDayCard({
         addCourseFunction: Function
     }) {
     const bindFormWithCourseNameAndDayOfTrainingRemoveCourse = removeCourse.bind(null, courseName, dayOfTraining);
-    const bindFormWithCourseNameAndDayOfTrainingGoToCourse = goToCourse.bind(null, dayOfTraining, courseName);    
+    const bindFormWithCourseNameAndDayOfTrainingGoToCourse = goToCourse.bind(null, dayOfTraining, courseName);
     // const cardRef = useRef<HTMLDivElement>(null);
 
     // useEffect(() => {
@@ -92,6 +92,7 @@ export default function TrainingDayCard({
                         </CardFooter>
                     </button>
                 </form>
+
             )
             }
         </Card >

@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TrainingDayCard from "./trainingDayCard";
 import { Course } from "@/types/types";
 import AddCourse from "@/components/ui/addCourse/addCourse";
@@ -10,7 +10,6 @@ export default function TrainingDayCardSection({ day, email, coursesData, isAdmi
     const [showAddCourse, setShowAddCourse] = useState(false);
 
     function addCourseClicked() {
-        console.log("Add course");
         setShowAddCourse(true);
     }
     function addCourseClose() {
@@ -18,7 +17,6 @@ export default function TrainingDayCardSection({ day, email, coursesData, isAdmi
     }
     
 
-    // console.log(coursesData);
     return (
         <div className="w-full md:w-4/6  p-4">
             <h1 className="text-3xl mb-4">Day {day}</h1>
